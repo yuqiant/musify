@@ -1,0 +1,66 @@
+.wd-navigation {
+    background-color: black;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    /* Full width */
+    display: flex;
+    /* Align items in a row */
+    justify-content: space-around;
+    /* Even spacing */
+}
+
+.wd-navigation .list-group-item {
+    display: inline-block;
+    /* Make list items inline */
+    border-radius: 0;
+    /* Optional: removes border-radius */
+}
+
+.wd-navigation a {
+    padding: 10px;
+    margin-bottom: 0;
+    /* Adjust for horizontal layout */
+    font-size: 0.8em;
+    text-align: center;
+    background-color: black;
+    border: none;
+    display: block;
+    /* Ensure proper alignment */
+    color: white;
+    /* Text color */
+    text-decoration: none;
+}
+
+.wd-navigation a.active {
+    background-color: white;
+    color: red;
+}
+
+.wd-icon,
+.wd-navigation a i {
+    color: red;
+    font-size: 2em;
+    margin-bottom: 0;
+    /* Adjust for horizontal layout */
+}
+
+.list-group-item {
+    color: white;
+    /* Set default text color to white */
+    padding: 5px 10px;
+}
+
+.list-group-item.active {
+    background-color: black;
+    color: red;
+}
+
+/* Responsive adjustments (if needed) */
+@media (max-width: 600px) {
+    .wd-navigation a {
+        padding: 5px;
+        font-size: 0.6em;
+    }
+}

@@ -1,0 +1,55 @@
+/* Reset margin and padding to remove default browser styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General App styling */
+.App {
+    text-align: center;
+}
+
+/* Navigation bar styling */
+.App-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #282c34;
+    padding: 1rem;
+    color: white;
+}
+
+.App-nav h1 {
+    font-size: 1.5rem;
+}
+
+.App-nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1rem;
+}
+
+.App-nav a:hover {
+    text-decoration: underline;
+}
+
+/* Header and content styling */
+.App-header {
+    color: white;
+    padding-top: 60px;
+    /* Adjust this value as needed */
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+.App-link:hover {
+    color: #39a9db;
+}
