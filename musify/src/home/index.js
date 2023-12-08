@@ -14,7 +14,6 @@ function Home() {
         event.preventDefault();
         console.log('Search Term:', searchTerm);
         console.log('Search Type:', searchType);
-        // Add search logic here
     };
 
     const handleSearchTypeChange = (type) => {

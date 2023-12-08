@@ -1,16 +1,13 @@
-/* Reset margin and padding to remove default browser styling */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* General App styling */
 .App {
     text-align: center;
 }
 
-/* Navigation bar styling */
 .App-nav {
     display: flex;
     justify-content: space-between;
@@ -34,11 +31,9 @@
     text-decoration: underline;
 }
 
-/* Header and content styling */
 .App-header {
     color: white;
     padding-top: 60px;
-    /* Adjust this value as needed */
 }
 
 .App-logo {
@@ -67,8 +62,8 @@
 
 .search-container {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    justify-content: center; 
+    align-items: center;
     margin-top: 20px;
 }
 
@@ -77,9 +72,9 @@
 }
 
 .search-type-button {
-    font-size: 16px; /* Adjust the font size as needed */
-    padding: 10px 20px; /* Bigger button */
-    margin-right: 10px; /* Space between buttons */
+    font-size: 16px; 
+    padding: 10px 20px; 
+    margin-right: 10px;
     border: 1px solid transparent;
     background-color: #f8f9fa;
     color: #000;
