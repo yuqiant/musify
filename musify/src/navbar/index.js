@@ -26,7 +26,7 @@ const Navbar = () => {
                 </li>
                 <li className="list-group-item">
                     {isAuthenticated ? (
-                        <NavLink to={`/account/${userId}`} activeClassName="active">
+                        <NavLink to={`/account/`} activeClassName="active">
                             Account
                         </NavLink>
                     ) : (

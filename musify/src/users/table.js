@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext} from "react";
 import { Link } from 'react-router-dom';
 import { BsFillCheckCircleFill, BsPencil, BsTrash3Fill, BsPlusCircleFill } from "react-icons/bs";
+import { AuthContext } from "../AuthContext";
 import * as client from "./client";
 
 function UserTable() {
+  const { isAuthenticated, userId } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({ username: "", password: "", role: "USER" });
 
@@ -122,7 +124,7 @@ function UserTable() {
           {users.map((user) => (
             <tr key={user._id}>
             <td>        
-                <Link to={`/signin/${user._id}`}>
+                <Link to={`/account/${user._id}`}>
                     {user.username}
                 </Link>
             </td>

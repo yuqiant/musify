@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import * as client from "./client";
 
 function Account() {
+  const { isAuthenticated, setIsAuthenticated, userId, setUserId } = useContext(AuthContext); // Extract setIsAuthenticated and setUserId
   const [account, setAccount] = useState({
     firstName: "",
     lastName: "",
@@ -16,14 +18,22 @@ function Account() {
   const fetchAccount = async () => {
     try {
       const accountData = await client.account();
+      
+      // Format the DOB for the date input
+      if (accountData.dob) {
+        const formattedDOB = new Date(accountData.dob).toISOString().split('T')[0];
+        accountData.dob = formattedDOB;
+      } else {
+        accountData.dob = ''; // Set to empty if undefined or null
+      }
+  
       setAccount(accountData);
-      // Store role in local storage for persistent access control
       localStorage.setItem('role', accountData.role);
     } catch (err) {
       setError("Failed to load account data.");
     }
   };
-
+  
   useEffect(() => {
     fetchAccount();
   }, []);
@@ -31,7 +41,6 @@ function Account() {
   const save = async () => {
     try {
       await client.updateUser(account);
-      // Reflect role changes in local storage
       localStorage.setItem('role', account.role);
     } catch (err) {
       setError("Failed to update account.");
@@ -39,10 +48,15 @@ function Account() {
   };
 
   const signout = async () => {
-    await client.signout();
-    // Clear role from local storage on signout
-    localStorage.removeItem('role');
-    navigate("/signin");
+    try {
+      await client.signout();
+      setIsAuthenticated(false); // Set isAuthenticated to false
+      setUserId(null); // Clear the userId
+      localStorage.removeItem('userId'); // Clear the userId from local storage
+      navigate("/signin");
+    } catch (err) {
+      console.error('Error signing out:', err);
+    }
   };
 
   const handleChange = (e) => {
@@ -53,6 +67,7 @@ function Account() {
   return (
     <div className="w-50">
       <h1>Account</h1>
+      {error && <div style={{ color: "red" }}>{error}</div>}
       {error && <div style={{ color: "red" }}>{error}</div>}
       {account && (
         <div>
@@ -74,7 +89,7 @@ function Account() {
           <button onClick={save}>Save</button>
           <button onClick={signout}>Signout</button>
           {account.role === "ADMIN" && (
-            <Link to="/admin/profile" className="btn btn-warning w-100">Users</Link>
+            <Link to="/admin/profile" className="btn btn-warning w-100">User Management</Link>
           )}
         </div>
       )}

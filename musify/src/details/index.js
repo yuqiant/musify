@@ -76,11 +76,13 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../navbar';
-import UserContext from './userContext';
+// import UserContext from '../userContext';
+import { AuthContext } from '../AuthContext';
 
 function SongDetails() {
     const { id } = useParams();
-    const { user, isAuthenticated } = useContext(UserContext);
+    const { isAuthenticated, userId } = useContext(AuthContext);
+    // const { user, isAuthenticated } = useContext(UserContext);
     const [song, setSong] = useState(null);
     const [playlists, setPlaylists] = useState([]);
     const [selectedPlaylist, setSelectedPlaylist] = useState('');
@@ -93,12 +95,12 @@ function SongDetails() {
             .catch(error => console.error('Error fetching song details:', error));
 
         // 获取播放列表，只有在用户已登录时
-        if (isAuthenticated && user) {
-            axios.get(`${REMOTE_API_URL}/users/${user.id}/playlists`)
+        if (isAuthenticated && userId) {
+            axios.get(`${REMOTE_API_URL}/users/${userId}/playlists`)
                 .then(response => setPlaylists(response.data))
                 .catch(error => console.error('Error fetching playlists:', error));
         }
-    }, [id, user, isAuthenticated]);
+    }, [id, userId, isAuthenticated]);
 
     const handleAddSong = () => {
         if (!isAuthenticated) {

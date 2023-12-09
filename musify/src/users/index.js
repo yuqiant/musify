@@ -8,10 +8,7 @@ import Nav from "./nav";
 function Users() {
   return (
     <div className="row">
-      <div className="col-2">
-        <Nav />
-      </div>
-      <div className="col-10">
+      <div>
         <Routes>
           <Route path="signin" element={<Signin />} />
           <Route path="account" element={<Account />} />
