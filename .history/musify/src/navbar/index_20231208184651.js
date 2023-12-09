@@ -20,16 +20,18 @@ const Navbar = () => {
                     {/* </NavLink> */}
                 </li>
                 {/* <li className="list-group-item">
-                    Language
-                </li> */}
-                <li className="list-group-item">
-                    {/* <NavLink to="/signin" activeClassName="active"> */}
-                    Sign In/Up
-                    {/* </NavLink> */}
-                </li>
-            </ul>
-            {/* </div> */}
-        </nav>
+                    {/* <NavLink to="/language" activeClassName="active"> */}
+                Language
+                {/* </NavLink> */}
+            </li> */}
+            <li className="list-group-item">
+                {/* <NavLink to="/signin" activeClassName="active"> */}
+                Sign In/Up
+                {/* </NavLink> */}
+            </li>
+        </ul>
+            {/* </div> */ }
+        </nav >
     );
 };
 

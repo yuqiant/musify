@@ -180,8 +180,8 @@ function Home() {
                         >
                             {type}
                         </button>
-
-                    ))}<br /><br />
+                        <br /><br />
+                    ))}
                 </div>
                 <form onSubmit={handleSearchSubmit} className="form-inline">
                     <input

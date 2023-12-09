@@ -76,13 +76,8 @@
 
 .search-bar {
     width: 500px;
-
-}
-
-.form-inline {
-    display: flex;
     justify-content: center;
-    width: 100%;
+
 }
 
 .search-type-button {
