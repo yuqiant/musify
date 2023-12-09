@@ -76,13 +76,13 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../navbar';
-// import UserContext from '../userContext';
+import UserContext from './userContext';
 import { AuthContext } from '../AuthContext';
 
 function SongDetails() {
     const { id } = useParams();
-    const { isAuthenticated, userId } = useContext(AuthContext);
     // const { user, isAuthenticated } = useContext(UserContext);
+    const { isAuthenticated, userId } = useContext(AuthContext);
     const [song, setSong] = useState(null);
     const [playlists, setPlaylists] = useState([]);
     const [selectedPlaylist, setSelectedPlaylist] = useState('');
