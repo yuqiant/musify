@@ -26,8 +26,8 @@ function Signin() {
       setError("Sign-in failed. Please check your credentials and try again.");
     }
   };
-  
-  
+
+
   return (
     <div>
       <h1>Signin</h1>
@@ -35,13 +35,13 @@ function Signin() {
       <input
         placeholder="Username"
         value={credentials.username}
-        onChange={(e) => setCredentials({...credentials, username: e.target.value})}
+        onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
       />
       <input
         type="password"
         placeholder="Password"
         value={credentials.password}
-        onChange={(e) => setCredentials({...credentials, password: e.target.value})}
+        onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
       />
       <button onClick={signin}>Signin</button>
       <button onClick={() => navigate("/signup")}>Sign Up</button> {/* Button to navigate to the signup page */}
