@@ -118,7 +118,6 @@ function SongDetails() {
 
     return (
         <div>
-            <Navbar />
             <br />
 
             <div class="row">

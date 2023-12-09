@@ -89,7 +89,6 @@ function Results() {
 
     return (
         <div>
-            <Navbar />
             <button onClick={goBack} className="btn"> Back</button>
 
             <div>

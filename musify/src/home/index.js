@@ -89,7 +89,6 @@ import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-import Navbar from '../navbar';
 
 function Home() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -168,7 +167,6 @@ function Home() {
 
         <div className="App">
             <div className="search-section">
-                <Navbar />
                 <br /><br />
                 <h2 className="playlist-heading">Make your Playlist</h2>
                 <br /><br />
