@@ -1,27 +1,36 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './index.css';
 import { AuthContext } from '../AuthContext';
 
 const Navbar = () => {
     const { isAuthenticated, userId } = useContext(AuthContext);
-    console.log("isAuthenticated: ", isAuthenticated);
+    const navigate = useNavigate();
+
+    const handleDashboardClick = (event) => {
+        // Prevent default navigation of NavLink
+        event.preventDefault();
+
+        if (isAuthenticated) {
+            navigate(`/dashboard/${userId}`);
+        } else {
+            alert("You must be signed in to access the dashboard.");
+            navigate("/signin");
+        }
+    };
 
     return (
         <nav className="wd-navigation">
             <p className="bold-left-align">Musify</p>
             <ul className="menu">
                 <li className="list-group-item">
-                    <NavLink exact to="/" activeClassName="active">
+                    <NavLink to="/" activeClassName="active">
                         Home
                     </NavLink>
                 </li>
-                {/* <li className="list-group-item">
-                    Language
-                </li> */}
                 <li className="list-group-item">
-                    <NavLink to="/language" activeClassName="active">
-                        Language
+                    <NavLink to={`/dashboard`} activeClassName="active" onClick={handleDashboardClick}>
+                        Dashboard
                     </NavLink>
                 </li>
                 <li className="list-group-item">
