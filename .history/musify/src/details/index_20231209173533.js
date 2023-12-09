@@ -88,56 +88,29 @@ function SongDetails() {
     const [selectedPlaylist, setSelectedPlaylist] = useState('');
     const REMOTE_API_URL = "http://localhost:4000";
 
-    // useEffect(() => {
-    //     // 获取歌曲详情
-    //     axios.get(`${REMOTE_API_URL}/details/${id}`)
-    //         .then(response => setSong(response.data))
-    //         .catch(error => console.error('Error fetching song details:', error));
-    //     console.log("current authenticated:", isAuthenticated)
-
-
-    //     // 获取播放列表，只有在用户已登录时
-
-    //     if (isAuthenticated && userId) {
-    //         console.log("userId here: ", userId);
-    //         axios.get(`${REMOTE_API_URL}/users/${userId}/playlists`)
-
-
-    //             // .then(response => setPlaylists(response.data))
-    //             .then(response => {
-    //                 console.log("Response data:", response.data);  // 打印响应数据
-    //                 setPlaylists(response.data);
-    //             })
-    //             .catch(error => {
-    //                 console.log("Response userid:", userId);
-    //                 console.error('Error fetching playlists:', error)
-    //             });
-
-    //     }
-    // }, [id, userId, isAuthenticated]);
-
     useEffect(() => {
-        // 定义一个异步函数
-        const fetchSongDetails = async () => {
-            try {
-                const songResponse = await axios.get(`${REMOTE_API_URL}/details/${id}`);
-                setSong(songResponse.data);
-                console.log("current authenticated:", isAuthenticated);
+        // 获取歌曲详情
+        axios.get(`${REMOTE_API_URL}/details/${id}`)
+            .then(response => setSong(response.data))
+            .catch(error => console.error('Error fetching song details:', error));
+        console.log("current authenticated:", isAuthenticated)
 
-                if (isAuthenticated && userId) {
-                    const playlistsResponse = await axios.get(`${REMOTE_API_URL}/users/${userId}/playlists`);
-                    setPlaylists(playlistsResponse.data);
-                    console.log("Response data:", playlistsResponse.data);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        };
 
-        // 调用异步函数
-        fetchSongDetails();
+        // 获取播放列表，只有在用户已登录时
+
+        if (isAuthenticated && userId) {
+            console.log("userId here: ", userId);
+            axios.get(`${REMOTE_API_URL}/users/${userId}/playlists`)
+
+                // .then(response => setPlaylists(response.data))
+                .then(response => {
+                    console.log("Response data:", response.data);  // 打印响应数据
+                    setPlaylists(response.data);
+                })
+                .catch(error => console.error('Error fetching playlists:', error));
+
+        }
     }, [id, userId, isAuthenticated]);
-
 
     const handleAddSong = () => {
         if (!isAuthenticated) {
