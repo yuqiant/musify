@@ -93,17 +93,12 @@ function SongDetails() {
         axios.get(`${REMOTE_API_URL}/details/${id}`)
             .then(response => setSong(response.data))
             .catch(error => console.error('Error fetching song details:', error));
-        console.log("current authenticated:", isAuthenticated)
-        console.log("userId here: ", userId);
-
 
         // 获取播放列表，只有在用户已登录时
-        if (isAuthenticated && userId) {
-
+        if (isAuthenticated && user) {
             axios.get(`${REMOTE_API_URL}/users/${userId}/playlists`)
                 .then(response => setPlaylists(response.data))
                 .catch(error => console.error('Error fetching playlists:', error));
-
         }
     }, [id, userId, isAuthenticated]);
 
@@ -174,6 +169,7 @@ function SongDetails() {
             <h2>{song.artistName}</h2>
             <h2>{song.genre}</h2>
             <h2>{song.releasedYear}</h2> */}
+
 
             {isAuthenticated && (
                 <>

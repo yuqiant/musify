@@ -84,7 +84,7 @@
 
 
 
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -146,7 +146,6 @@ function Home() {
         // navigate(`/search?criteria=${searchTerm}&type=${searchType}`);
         console.log('Search Term:', searchTerm);
         console.log('Search Type:', searchType);
-        console.log("home authenticate:", isAuthenticated);
     };
 
     // const renderSearchResults = () => {

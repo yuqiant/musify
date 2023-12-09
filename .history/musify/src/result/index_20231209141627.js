@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../navbar';
-import { AuthContext } from '../AuthContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Results() {
@@ -10,20 +9,12 @@ function Results() {
     const REMOTE_API_URL = "http://localhost:4000/search";
     const [searchResults, setSearchResults] = useState([]);
     const navigate = useNavigate();
-    const { isAuthenticated, userId } = useContext(AuthContext);
-
-    const handleViewDetails = (songId) => {
-        navigate(`/details/${songId}`);
-    };
-
     const goBack = () => navigate('/');  // go back to home
 
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
         const query = queryParams.get('query');
         const type = queryParams.get('type');
-
-
 
         // 根据 query 和 type 执行搜索
         const performSearch = async () => {
@@ -32,8 +23,7 @@ function Results() {
                 if (Array.isArray(response.data)) {
                     setSearchResults(response.data);
                     console.log("Response data:", response.data);
-                    console.log("search page authenticate:", isAuthenticated);
-                    // console.log("current authenticated:", isAuthenticated)
+                    console.log("current authenticated:", isAuthenticated)
 
                 } else {
                     setSearchResults([response.data]);
@@ -88,11 +78,8 @@ function Results() {
                             <td>{result.artistName}</td>
                             {/* <td>{result.releasedYear}</td>
                             <td>{result.genre}</td> */}
-                            {/* <td><a href={`/details/${result._id}`}>View Details</a></td> */}
+                            <td><a href={`/details/${result._id}`}>View Details</a></td>
                             {/* console.log("result id: ",{result._id}) */}
-                            <button onClick={() => handleViewDetails(result._id)} className="btn">
-                                View Details
-                            </button>
 
                         </tr>
                     ))}

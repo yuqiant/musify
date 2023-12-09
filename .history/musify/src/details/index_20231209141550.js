@@ -94,16 +94,13 @@ function SongDetails() {
             .then(response => setSong(response.data))
             .catch(error => console.error('Error fetching song details:', error));
         console.log("current authenticated:", isAuthenticated)
-        console.log("userId here: ", userId);
 
 
         // 获取播放列表，只有在用户已登录时
         if (isAuthenticated && userId) {
-
             axios.get(`${REMOTE_API_URL}/users/${userId}/playlists`)
                 .then(response => setPlaylists(response.data))
                 .catch(error => console.error('Error fetching playlists:', error));
-
         }
     }, [id, userId, isAuthenticated]);
 

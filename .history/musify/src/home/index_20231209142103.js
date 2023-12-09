@@ -84,7 +84,7 @@
 
 
 
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -98,7 +98,6 @@ function Home() {
     const location = useLocation();
     const REMOTE_API_URL = "http://localhost:4000/search";
     const navigate = useNavigate();
-    const { isAuthenticated, userId } = useContext(AuthContext);
 
     // useEffect(() => {
     //     const queryParams = new URLSearchParams(location.search);
@@ -146,7 +145,6 @@ function Home() {
         // navigate(`/search?criteria=${searchTerm}&type=${searchType}`);
         console.log('Search Term:', searchTerm);
         console.log('Search Type:', searchType);
-        console.log("home authenticate:", isAuthenticated);
     };
 
     // const renderSearchResults = () => {

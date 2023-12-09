@@ -88,11 +88,8 @@ function Results() {
                             <td>{result.artistName}</td>
                             {/* <td>{result.releasedYear}</td>
                             <td>{result.genre}</td> */}
-                            {/* <td><a href={`/details/${result._id}`}>View Details</a></td> */}
+                            <td><a href={`/details/${result._id}`}>View Details</a></td>
                             {/* console.log("result id: ",{result._id}) */}
-                            <button onClick={() => handleViewDetails(result._id)} className="btn">
-                                View Details
-                            </button>
 
                         </tr>
                     ))}
