@@ -143,6 +143,8 @@ function Home() {
         navigate(`/search?query=${searchTerm}&type=${searchType}`);
         // performSearch(searchTerm);
         // navigate(`/search?criteria=${searchTerm}&type=${searchType}`);
+        console.log('Search Term:', searchTerm);
+        console.log('Search Type:', searchType);
     };
 
     // const renderSearchResults = () => {
