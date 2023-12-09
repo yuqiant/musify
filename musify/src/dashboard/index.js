@@ -1,7 +1,7 @@
 // Dashboard.js
 import React, { useContext, useState, useEffect } from 'react';
-import { AuthContext } from './AuthContext';
-import * as client from './client'; // Ensure you have a client.js that contains the necessary API calls
+import { AuthContext } from '../AuthContext';
+import * as client from '../users/client'; // Ensure you have a client.js that contains the necessary API calls
 
 const Dashboard = () => {
     const { userId } = useContext(AuthContext);
