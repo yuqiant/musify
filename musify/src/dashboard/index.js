@@ -1,18 +1,18 @@
-// Dashboard.js
 import React, { useContext, useState, useEffect } from 'react';
-import { AuthContext } from './AuthContext';
-import * as client from './client'; // Ensure you have a client.js that contains the necessary API calls
+import { AuthContext } from '../AuthContext';
+import * as userClient from '../users/client'; // Adjust path as needed
+import * as songClient from './client'; // Adjust path as needed
+import AdminDashboard from './admindashboard';
 
 const Dashboard = () => {
     const { userId } = useContext(AuthContext);
     const [userData, setUserData] = useState(null);
 
     useEffect(() => {
-        // Fetch user data when the component mounts
         const fetchUserData = async () => {
             if (userId) {
                 try {
-                    const response = await client.findUserById(userId);
+                    const response = await userClient.findUserById(userId);
                     setUserData(response);
                 } catch (error) {
                     console.error('Error fetching user data:', error);
@@ -27,12 +27,66 @@ const Dashboard = () => {
         return <div>Loading user data...</div>;
     }
 
-    // Display user-specific data
+    const handleAddSong = async (song) => {
+        try {
+            await songClient.addSong(song);
+            alert('Song added successfully');
+        } catch (error) {
+            console.error('Error adding song:', error);
+            alert('Failed to add song');
+        }
+    };
+
+    const handleEditSong = async (songId, updatedSong) => {
+        try {
+            await songClient.updateSong(songId, updatedSong);
+            alert('Song updated successfully');
+        } catch (error) {
+            console.error('Error updating song:', error);
+            alert('Failed to update song');
+        }
+    };
+
+    const handleDeleteSong = async (songId) => {
+        try {
+            await songClient.deleteSong(songId);
+            alert('Song deleted successfully');
+        } catch (error) {
+            console.error('Error deleting song:', error);
+            alert('Failed to delete song');
+        }
+    };
+
     return (
         <div>
-            <h1>User Dashboard</h1>
-            <p>Welcome back, {userData.firstName}!</p>
-            {/* Display more user-specific data here */}
+            <p>Hello, {userData.firstName}!</p>
+
+            {userData.role === 'USER' && (
+                <div>
+                    <h2>Your Playlists</h2>
+                    {/* Display playlists here */}
+                </div>
+            )}
+
+            {userData.role === 'ADMIN' && (
+                <div>
+                    <h2>Song Management</h2>
+                <AdminDashboard 
+                    onAddSong={handleAddSong} 
+                    onEditSong={handleEditSong} 
+                    onDeleteSong={handleDeleteSong} 
+                />
+                </div> 
+            )}
+
+            {userData.role === 'REVIEWER' && (
+                <div>
+                    <h2>Your Reviews</h2>
+                    {/* Display reviews here */}
+                </div>
+            )}
+
+            {/* Additional role-specific components */}
         </div>
     );
 };

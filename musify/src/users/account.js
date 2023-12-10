@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import * as client from "./client";
+import './account.css'; // Ensure this path is correct
 
 function Account() {
-  const { isAuthenticated, setIsAuthenticated, userId, setUserId } = useContext(AuthContext); // Extract setIsAuthenticated and setUserId
+  const { isAuthenticated, setIsAuthenticated, userId, setUserId } = useContext(AuthContext);
   const [account, setAccount] = useState({
     firstName: "",
     lastName: "",
@@ -18,22 +19,19 @@ function Account() {
   const fetchAccount = async () => {
     try {
       const accountData = await client.account();
-      
-      // Format the DOB for the date input
       if (accountData.dob) {
         const formattedDOB = new Date(accountData.dob).toISOString().split('T')[0];
         accountData.dob = formattedDOB;
       } else {
-        accountData.dob = ''; // Set to empty if undefined or null
+        accountData.dob = '';
       }
-  
       setAccount(accountData);
       localStorage.setItem('role', accountData.role);
     } catch (err) {
       setError("Failed to load account data.");
     }
   };
-  
+
   useEffect(() => {
     fetchAccount();
   }, []);
@@ -50,9 +48,9 @@ function Account() {
   const signout = async () => {
     try {
       await client.signout();
-      setIsAuthenticated(false); // Set isAuthenticated to false
-      setUserId(null); // Clear the userId
-      localStorage.removeItem('userId'); // Clear the userId from local storage
+      setIsAuthenticated(false);
+      setUserId(null);
+      localStorage.removeItem('userId');
       navigate("/signin");
     } catch (err) {
       console.error('Error signing out:', err);
@@ -65,34 +63,48 @@ function Account() {
   };
 
   return (
-    <div className="w-50">
-      <h1>Account</h1>
-      {error && <div style={{ color: "red" }}>{error}</div>}
-      {error && <div style={{ color: "red" }}>{error}</div>}
-      {account && (
-        <div>
-          <label>First Name</label>
-          <input name="firstName" value={account.firstName} onChange={handleChange} />
-          <label>Last Name</label>
-          <input name="lastName" value={account.lastName} onChange={handleChange} />
-          <label>Date of Birth</label>
-          <input type="date" name="dob" value={account.dob} onChange={handleChange} />
-          <label>Email</label>
-          <input name="email" value={account.email} onChange={handleChange} />
-          <label>Role</label>
-          <select name="role" value={account.role} onChange={handleChange}>
+    <div className="account-section">
+      <h1 className="account-heading">Account</h1>
+      {error && <div className="error-message">{error}</div>}
+      <div className="account-form">
+        <div className="account-row">
+          <label htmlFor="firstName">First Name</label>
+          <input id="firstName" className="account-input" name="firstName" value={account.firstName} onChange={handleChange} />
+        </div>
+
+        <div className="account-row">
+          <label htmlFor="lastName">Last Name</label>
+          <input id="lastName" className="account-input" name="lastName" value={account.lastName} onChange={handleChange} />
+        </div>
+
+        <div className="account-row">
+          <label htmlFor="dob">Date of Birth</label>
+          <input id="dob" className="account-input" type="date" name="dob" value={account.dob} onChange={handleChange} />
+        </div>
+
+        <div className="account-row">
+          <label htmlFor="email">Email</label>
+          <input id="email" className="account-input" name="email" value={account.email} onChange={handleChange} />
+        </div>
+
+        <div className="account-row">
+          <label htmlFor="role">Role</label>
+          <select id="role" className="account-input" name="role" value={account.role} onChange={handleChange}>
             <option value="USER">User</option>
             <option value="ADMIN">Admin</option>
-            <option value="FACULTY">Faculty</option>
-            <option value="STUDENT">Student</option>
+            <option value="REVIEWER">Reviewer</option>
           </select>
-          <button onClick={save}>Save</button>
-          <button onClick={signout}>Signout</button>
-          {account.role === "ADMIN" && (
-            <Link to="/admin/profile" className="btn btn-warning w-100">User Management</Link>
-          )}
         </div>
-      )}
+
+        <div className="account-actions">
+          <button className="account-btn save-btn" onClick={save}>Save</button>
+          <button className="account-btn signout-btn" onClick={signout}>Signout</button>
+        </div>
+
+        {account.role === "ADMIN" && (
+          <Link to="/admin/profile" className="btn btn-warning w-100">User Management</Link>
+        )}
+      </div>
     </div>
   );
 }

@@ -10,6 +10,7 @@ import Home from './home';
 import AccountPage from './users/accountpage';
 import Account from './users/account';
 import Users from "./users";
+import Dashboard from './dashboard';
 
 // ProtectedRoute component to handle the redirection based on authentication
 const ProtectedRoute = ({ children }) => {
@@ -45,6 +46,11 @@ function App() {
             <ProtectedRoute>
               <Home />
             </ProtectedRoute>
+          } />
+          <Route path="/dashboard" element={
+              <ProtectedRoute>
+                  <Dashboard /> 
+              </ProtectedRoute>
           } />
           <Route path="/*" element={<Users />} />
           <Route path="/account/:userId" element={<AccountPage />} />

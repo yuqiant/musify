@@ -12,7 +12,8 @@ const Navbar = () => {
         event.preventDefault();
 
         if (isAuthenticated) {
-            navigate(`/dashboard/${userId}`);
+            // navigate(`/dashboard/${userId}`);
+            navigate(`/dashboard`);
         } else {
             alert("You must be signed in to access the dashboard.");
             navigate("/signin");
