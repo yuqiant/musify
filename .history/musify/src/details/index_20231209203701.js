@@ -78,7 +78,6 @@ import axios from 'axios';
 import Navbar from '../navbar';
 // import UserContext from '../userContext';
 import { AuthContext } from '../AuthContext';
-import "./index.css";
 
 function SongDetails() {
     const { id } = useParams();
@@ -212,7 +211,7 @@ function SongDetails() {
                             </option>
                         ))}
                     </select>
-                    <button className='btn btn-success' onClick={handleAddSong}>Add to My List</button>
+                    <button onClick={handleAddSong}>Add to My List</button>
                 </div>
             )}
         </div>

@@ -1,0 +1,23 @@
+.song-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* Adjust the height as necessary */
+}
+
+.select-playlist-container {
+    margin: 20px 0;
+}
+
+.select-playlist-container select,
+.select-playlist-container button {
+    padding: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+button {
+    cursor: pointer;
+}

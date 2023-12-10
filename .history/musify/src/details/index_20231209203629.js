@@ -78,7 +78,6 @@ import axios from 'axios';
 import Navbar from '../navbar';
 // import UserContext from '../userContext';
 import { AuthContext } from '../AuthContext';
-import "./index.css";
 
 function SongDetails() {
     const { id } = useParams();
@@ -199,8 +198,7 @@ function SongDetails() {
 
 
             {isAuthenticated && (
-                <div className="select-playlist-container">
-
+                <>
                     <select
                         value={selectedPlaylist}
                         onChange={(e) => setSelectedPlaylist(e.target.value)}
@@ -212,8 +210,8 @@ function SongDetails() {
                             </option>
                         ))}
                     </select>
-                    <button className='btn btn-success' onClick={handleAddSong}>Add to My List</button>
-                </div>
+                    <button onClick={handleAddSong}>Add to My List</button>
+                </>
             )}
         </div>
     );

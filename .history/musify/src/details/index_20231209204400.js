@@ -212,7 +212,7 @@ function SongDetails() {
                             </option>
                         ))}
                     </select>
-                    <button className='btn btn-success' onClick={handleAddSong}>Add to My List</button>
+                    <button className='btn btn-primary' onClick={handleAddSong}>Add to My List</button>
                 </div>
             )}
         </div>
