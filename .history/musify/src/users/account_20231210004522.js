@@ -102,8 +102,7 @@ function Account() {
         </div>
 
         {account.role === "ADMIN" && (
-          // yq: changed from profile to dashboard
-          <Link to="/admin/dashboard" className="btn btn-warning w-100">User Management</Link>
+          <Link to="/admin/profile" className="btn btn-warning w-100">User Management</Link>
         )}
       </div>
     </div>

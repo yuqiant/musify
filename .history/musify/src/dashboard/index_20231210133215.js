@@ -73,8 +73,7 @@ const Dashboard = () => {
                     <h2>Your Playlists</h2>
                     <div>
                         {playlists.map(playlist => (
-                            // <PlaylistComponent key={playlist.id} playlist={playlist} />
-                            <PlaylistComponent key={playlist._id} playlist={playlist} />
+                            <PlaylistComponent key={playlist.id} playlist={playlist} />
                         ))}
                     </div>
                 </div>

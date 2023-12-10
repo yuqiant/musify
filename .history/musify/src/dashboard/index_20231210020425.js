@@ -9,8 +9,6 @@ import AdminDashboard from './admindashboard';
 const Dashboard = () => {
     const { userId } = useContext(AuthContext);
     const [userData, setUserData] = useState(null);
-    const [playlists, setPlaylists] = useState([]);
-
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -18,8 +16,6 @@ const Dashboard = () => {
                 try {
                     const response = await userClient.findUserById(userId);
                     setUserData(response);
-                    const playlistsResponse = await playlistClient.getUserPlaylists(userId);
-                    setPlaylists(playlistsResponse);
                 } catch (error) {
                     console.error('Error fetching user data:', error);
                 }
@@ -71,12 +67,7 @@ const Dashboard = () => {
             {userData.role === 'USER' && (
                 <div>
                     <h2>Your Playlists</h2>
-                    <div>
-                        {playlists.map(playlist => (
-                            // <PlaylistComponent key={playlist.id} playlist={playlist} />
-                            <PlaylistComponent key={playlist._id} playlist={playlist} />
-                        ))}
-                    </div>
+                    {/* Display playlists here */}
                 </div>
             )}
 

@@ -73,7 +73,7 @@
 
 
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../navbar';
 // import UserContext from '../userContext';
@@ -82,16 +82,12 @@ import "./index.css";
 
 function SongDetails() {
     const { id } = useParams();
-    const navigate = useNavigate();
     const { isAuthenticated, userId } = useContext(AuthContext);
     // const { user, isAuthenticated } = useContext(UserContext);
     const [song, setSong] = useState(null);
     const [playlists, setPlaylists] = useState([]);
     const [selectedPlaylist, setSelectedPlaylist] = useState('');
     const REMOTE_API_URL = "http://localhost:4000";
-    const goToDashboard = () => {
-        navigate('/dashboard'); // 使用你的dashboard路由路径替换'/dashboard'
-    };
 
 
     useEffect(() => {
@@ -150,6 +146,7 @@ function SongDetails() {
                 }
             });
 
+        // console.error('Error adding song:', error));
     };
 
     if (!song) return <div>Loading song details...</div>;

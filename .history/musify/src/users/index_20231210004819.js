@@ -13,7 +13,7 @@ function Users() {
           <Route path="signin" element={<Signin />} />
           <Route path="profile" element={<Account />} />
           <Route path="signup" element={<Signup />} />
-          {/* <Route path="admin/profile" element={<UserTable />} /> */}
+          {/* yq: changed to dashboard */}
           <Route path="admin/dashboard" element={<UserTable />} />
         </Routes>
       </div>

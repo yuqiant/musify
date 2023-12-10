@@ -30,10 +30,10 @@ const Navbar = () => {
                     </NavLink>
                 </li>
                 <li className="list-group-item">
-                    <NavLink to={`/dashboard`} activeClassName="active" onClick={handleDashboardClick}>
+                    {/* <NavLink to={`/dashboard`} activeClassName="active" onClick={handleDashboardClick}>
                         Dashboard
-                    </NavLink>
-                    {/* <NavLink
+                    </NavLink> */}
+                    <NavLink
                         to="/dashboard"
                         className={({ isActive }) => isActive ? 'active' : ''}
                         isActive={(match, location) => {
@@ -42,7 +42,7 @@ const Navbar = () => {
                         }}
                     >
                         Dashboard
-                    </NavLink> */}
+                    </NavLink>
 
                 </li>
 
