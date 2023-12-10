@@ -107,10 +107,7 @@ const Dashboard = () => {
                     <h2>Your Playlists</h2>
                     <div>
                         {playlists.map(playlist => (
-                            <PlaylistComponent key={playlist._id}
-                                playlist={playlist}
-                                onDeleteSong={handleDeleteSongFromPlaylist}
-                                onEditPlaylist={handleEditPlaylist}
+                            <PlaylistComponent key={playlist._id} playlist={playlist} onDeleteSong={handleDeleteSongFromPlaylist}
                             />
                         ))}
                     </div>
@@ -124,7 +121,7 @@ const Dashboard = () => {
                         onAddSong={handleAddSong}
                         onEditSong={handleEditSong}
                         onDeleteSong={handleDeleteSong}
-
+                        onEditPlaylist={handleEditPlaylist}
                     />
                 </div>
             )}

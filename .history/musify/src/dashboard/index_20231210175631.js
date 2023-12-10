@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext';
 import * as userClient from '../users/client'; // Adjust path as needed
 import * as songClient from './client'; // Adjust path as needed
@@ -107,10 +106,7 @@ const Dashboard = () => {
                     <h2>Your Playlists</h2>
                     <div>
                         {playlists.map(playlist => (
-                            <PlaylistComponent key={playlist._id}
-                                playlist={playlist}
-                                onDeleteSong={handleDeleteSongFromPlaylist}
-                                onEditPlaylist={handleEditPlaylist}
+                            <PlaylistComponent key={playlist._id} playlist={playlist} onDeleteSong={handleDeleteSongFromPlaylist}
                             />
                         ))}
                     </div>
@@ -124,7 +120,7 @@ const Dashboard = () => {
                         onAddSong={handleAddSong}
                         onEditSong={handleEditSong}
                         onDeleteSong={handleDeleteSong}
-
+                        onEditPlaylist={handleEditPlaylist}
                     />
                 </div>
             )}
