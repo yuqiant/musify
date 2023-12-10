@@ -1,18 +1,18 @@
-// Dashboard.js
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../AuthContext';
-import * as client from '../users/client'; // Ensure you have a client.js that contains the necessary API calls
+import * as userClient from '../users/client'; // Adjust path as needed
+import * as songClient from './client'; // Adjust path as needed
+import AdminDashboard from './admindashboard';
 
 const Dashboard = () => {
     const { userId } = useContext(AuthContext);
     const [userData, setUserData] = useState(null);
 
     useEffect(() => {
-        // Fetch user data when the component mounts
         const fetchUserData = async () => {
             if (userId) {
                 try {
-                    const response = await client.findUserById(userId);
+                    const response = await userClient.findUserById(userId);
                     setUserData(response);
                 } catch (error) {
                     console.error('Error fetching user data:', error);
@@ -27,12 +27,41 @@ const Dashboard = () => {
         return <div>Loading user data...</div>;
     }
 
-    // Display user-specific data
+    const handleAddSong = async (song) => {
+        try {
+            await songClient.addSong(song);
+            alert('Song added successfully');
+            // Optionally, fetch the updated list of songs
+        } catch (error) {
+            console.error('Error adding song:', error);
+            alert('Failed to add song');
+        }
+    };
+
     return (
         <div>
             <h1>User Dashboard</h1>
             <p>Welcome back, {userData.firstName}!</p>
-            {/* Display more user-specific data here */}
+
+            {userData.role === 'USER' && (
+                <div>
+                    <h2>Your Playlists</h2>
+                    {/* Display playlists here */}
+                </div>
+            )}
+
+            {userData.role === 'ADMIN' && (
+                <AdminDashboard onAddSong={handleAddSong} />
+            )}
+
+            {userData.role === 'REVIEWER' && (
+                <div>
+                    <h2>Your Reviews</h2>
+                    {/* Display reviews here */}
+                </div>
+            )}
+
+            {/* Additional role-specific components */}
         </div>
     );
 };
