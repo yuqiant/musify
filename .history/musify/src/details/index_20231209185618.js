@@ -149,31 +149,9 @@ function SongDetails() {
             return;
         }
         console.log("song id is:", id);
-        console.log("playlist id is:", selectedPlaylist);
         axios.post(`${REMOTE_API_URL}/playlists/${selectedPlaylist}/add-song`, { songId: id })
             .then(response => alert('Song added to your list!'))
-            .catch(error => {
-                if (error.response) {
-                    // The request was made and the server responded with a status code
-                    // that falls out of the range of 2xx
-                    if (error.response.status === 400) {
-                        alert('Song already in the playlist.');
-                    } else {
-                        alert('Error adding song: ' + error.response.data);
-                    }
-                    console.error('Error data:', error.response.data);
-                } else if (error.request) {
-                    // The request was made but no response was received
-                    console.error('Error request:', error.request);
-                    alert('No response received from server.');
-                } else {
-                    // Something happened in setting up the request that triggered an Error
-                    console.error('Error message:', error.message);
-                    alert('Error adding song: ' + error.message);
-                }
-            });
-
-        // console.error('Error adding song:', error));
+            .catch(error => console.error('Error adding song:', error));
     };
 
     if (!song) return <div>Loading song details...</div>;
