@@ -31,17 +31,35 @@ const Dashboard = () => {
         try {
             await songClient.addSong(song);
             alert('Song added successfully');
-            // Optionally, fetch the updated list of songs
         } catch (error) {
             console.error('Error adding song:', error);
             alert('Failed to add song');
         }
     };
 
+    const handleEditSong = async (songId, updatedSong) => {
+        try {
+            await songClient.updateSong(songId, updatedSong);
+            alert('Song updated successfully');
+        } catch (error) {
+            console.error('Error updating song:', error);
+            alert('Failed to update song');
+        }
+    };
+
+    const handleDeleteSong = async (songId) => {
+        try {
+            await songClient.deleteSong(songId);
+            alert('Song deleted successfully');
+        } catch (error) {
+            console.error('Error deleting song:', error);
+            alert('Failed to delete song');
+        }
+    };
+
     return (
         <div>
-            <h1>User Dashboard</h1>
-            <p>Welcome back, {userData.firstName}!</p>
+            <p>Hello, {userData.firstName}!</p>
 
             {userData.role === 'USER' && (
                 <div>
@@ -51,7 +69,14 @@ const Dashboard = () => {
             )}
 
             {userData.role === 'ADMIN' && (
-                <AdminDashboard onAddSong={handleAddSong} />
+                <div>
+                    <h2>Song Management</h2>
+                <AdminDashboard 
+                    onAddSong={handleAddSong} 
+                    onEditSong={handleEditSong} 
+                    onDeleteSong={handleDeleteSong} 
+                />
+                </div> 
             )}
 
             {userData.role === 'REVIEWER' && (

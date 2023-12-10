@@ -1,28 +1,134 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import * as client from './client'; // Make sure the path to your client.js is correct
 
 const AdminDashboard = ({ onAddSong }) => {
     const [song, setSong] = useState({ songName: '', artistName: '', albumName: '', releasedYear: '', genre: '' });
+    const [songs, setSongs] = useState([]); // State for storing all songs
+    const [isEditing, setIsEditing] = useState(false);
+    const [editingSongId, setEditingSongId] = useState(null);
+
+    useEffect(() => {
+        fetchSongs();
+    }, []);
+
+    const fetchSongs = async () => {
+        try {
+            const fetchedSongs = await client.getAllSongs();
+            setSongs(fetchedSongs);
+        } catch (error) {
+            console.error('Error fetching songs:', error);
+        }
+    };
 
     const handleChange = (e) => {
         setSong({ ...song, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     await onAddSong(song);
+    //     setSong({ songName: '', artistName: '', albumName: '', releasedYear: '', genre: '' });
+    //     fetchSongs(); // Fetch songs again to update the list
+    // };
+
+    // const handleEdit = async (songId, updatedSong) => {
+    //     // Logic to update a song
+    //     await client.updateSong(songId, updatedSong);
+    //     fetchSongs();
+    // };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        onAddSong(song);
+        if (isEditing) {
+            await client.updateSong(editingSongId, song); // Update the song
+        } else {
+            await onAddSong(song); // Add a new song
+        }
         setSong({ songName: '', artistName: '', albumName: '', releasedYear: '', genre: '' });
+        setIsEditing(false);
+        setEditingSongId(null);
+        fetchSongs();
+    };
+
+    const handleEdit = (songItem) => {
+        setSong({ ...songItem }); // Fill the form with the song data for editing
+        setIsEditing(true);
+        setEditingSongId(songItem._id);
+    };
+
+    
+
+    const handleDelete = async (songId) => {
+        // Logic to delete a song
+        await client.deleteSong(songId);
+        fetchSongs();
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input name="songName" value={song.songName} onChange={handleChange} placeholder="Song Name" />
-            <input name="artistName" value={song.artistName} onChange={handleChange} placeholder="Artist Name" />
-            <input name="albumName" value={song.albumName} onChange={handleChange} placeholder="Album Name" />
-            <input name="releasedYear" value={song.releasedYear} onChange={handleChange} placeholder="Released Year" />
-            <input name="genre" value={song.genre} onChange={handleChange} placeholder="Genre" />
-            <button type="submit">Add Song</button>
-        </form>
+        <div>
+            <form onSubmit={handleSubmit}>
+                <input
+                    name="songName"
+                    value={song.songName}
+                    onChange={handleChange}
+                    placeholder="Song Name"
+                />
+                <input
+                    name="artistName"
+                    value={song.artistName}
+                    onChange={handleChange}
+                    placeholder="Artist Name"
+                />
+                <input
+                    name="albumName"
+                    value={song.albumName}
+                    onChange={handleChange}
+                    placeholder="Album Name"
+                />
+                <input
+                    name="releasedYear"
+                    value={song.releasedYear}
+                    onChange={handleChange}
+                    placeholder="Released Year"
+                />
+                <input
+                    name="genre"
+                    value={song.genre}
+                    onChange={handleChange}
+                    placeholder="Genre"
+                />
+                <button type="submit">{isEditing ? 'Save Changes' : 'Add Song'}</button>
+            </form>
+    
+            <table>
+                <thead>
+                    <tr>
+                        <th>Song Name</th>
+                        <th>Artist Name</th>
+                        <th>Album Name</th>
+                        <th>Released Year</th>
+                        <th>Genre</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {songs.map((songItem) => (
+                        <tr key={songItem._id}>
+                            <td>{songItem.songName}</td>
+                            <td>{songItem.artistName}</td>
+                            <td>{songItem.albumName}</td>
+                            <td>{songItem.releasedYear}</td>
+                            <td>{songItem.genre}</td>
+                            <td>
+                                <button onClick={() => handleEdit(songItem)}>Edit</button>
+                                <button onClick={() => handleDelete(songItem._id)}>Delete</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     );
-};
-
+}
+    
 export default AdminDashboard;

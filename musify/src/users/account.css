@@ -1,0 +1,65 @@
+.account-heading {
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-right: 500px;
+}
+
+.Account-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    min-height: 70vh;
+}
+
+/* Apply a consistent margin and width to all account input elements */
+.account-input {
+    margin-bottom: 15px; /* Adjust as needed for spacing */
+    padding: 10px;
+    width: 100%; /* Set to 100% to fill the container */
+    max-width: 400px; /* Maximum width can be set as needed */
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Button styles */
+.account-btn {
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-top: 20px; /* Space above buttons */
+    margin-right: 10px; /* Space between buttons */
+    width: auto; /* Auto width to fit content */
+    box-sizing: border-box;
+}
+
+/* Ensure that labels align with inputs */
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Container for the account section to align the form properly */
+.account-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start of the flex container */
+    width: 100%; /* Full width */
+    max-width: 400px; /* Maximum width as per the inputs */
+    margin: auto; /* Center the section in the page */
+}
+
+.save-btn {
+    /* Additional styles specific to the save button */
+}
+
+.signout-btn {
+    /* Additional styles specific to the signout button */
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+}
