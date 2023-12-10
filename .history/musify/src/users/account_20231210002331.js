@@ -64,7 +64,7 @@ function Account() {
 
   return (
     <div className="account-section">
-      <h1 className="account-heading">Profile</h1>
+      <h1 className="account-heading">Account</h1>
       {error && <div className="error-message">{error}</div>}
       <div className="account-form">
         <div className="account-row">

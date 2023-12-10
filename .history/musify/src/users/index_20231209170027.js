@@ -11,7 +11,7 @@ function Users() {
       <div>
         <Routes>
           <Route path="signin" element={<Signin />} />
-          <Route path="profile" element={<Account />} />
+          <Route path="account" element={<Account />} />
           <Route path="signup" element={<Signup />} />
           <Route path="admin/profile" element={<UserTable />} />
         </Routes>

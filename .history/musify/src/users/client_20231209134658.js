@@ -38,12 +38,12 @@ fetch('http://localhost:4000/api/users/signin', {
   },
   body: JSON.stringify({ username: 'test', password: 'test' })
 })
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error('Error:', error));
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
 
 export const account = async () => {
-  const response = await request.post(`${USERS_API}/profile`);
+  const response = await request.post(`${USERS_API}/account`);
   return response.data;
 };
 export const updateUser = async (user) => {
