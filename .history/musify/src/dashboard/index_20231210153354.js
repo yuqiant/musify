@@ -73,22 +73,6 @@ const Dashboard = () => {
         }
     };
 
-    const handleDeleteSongFromPlaylist = async (playlistId, songId) => {
-        if (window.confirm('Are you sure you want to remove this song from the playlist?')) {
-            try {
-                // 发送请求到后端 API 删除歌曲
-                await playlistClient.deleteSongFromPlaylist(playlistId, songId);
-
-                // 重新获取播放列表数据来更新 UI
-                const updatedPlaylists = await playlistClient.getUserPlaylists(userId);
-                setPlaylists(updatedPlaylists);
-            } catch (error) {
-                console.error('Error deleting song from playlist:', error);
-                alert('Failed to delete song from playlist');
-            }
-        }
-    };
-
 
 
     return (
@@ -100,8 +84,7 @@ const Dashboard = () => {
                     <h2>Your Playlists</h2>
                     <div>
                         {playlists.map(playlist => (
-                            <PlaylistComponent key={playlist._id} playlist={playlist} onDeleteSong={handleDeleteSongFromPlaylist}
-                            />
+                            <PlaylistComponent key={playlist._id} playlist={playlist} />
                         ))}
                     </div>
                 </div>

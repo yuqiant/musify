@@ -100,8 +100,7 @@ const Dashboard = () => {
                     <h2>Your Playlists</h2>
                     <div>
                         {playlists.map(playlist => (
-                            <PlaylistComponent key={playlist._id} playlist={playlist} onDeleteSong={handleDeleteSongFromPlaylist}
-                            />
+                            <PlaylistComponent key={playlist._id} playlist={playlist} />
                         ))}
                     </div>
                 </div>

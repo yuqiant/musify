@@ -25,9 +25,9 @@ const PlaylistComponent = ({ playlist, onDeleteSong }) => {
                 <div>
 
                     {playlist.songs.map(song => (
-                        <div key={song._id}>{song.songName}
-                            <button onClick={() => handleDeleteClick(song._id)}>Delete</button>
-                        </div>
+
+
+                        <div key={song._id}>{song.songName}</div>
                     ))}
 
                 </div>
