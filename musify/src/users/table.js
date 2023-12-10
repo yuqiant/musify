@@ -108,7 +108,7 @@ function UserTable() {
               >
                 <option value="USER">User</option>
                 <option value="ADMIN">Admin</option>
-                <option value="REVIEWER">Reviewer</option>
+                <option value="DJ">DJ</option>
               </select>
             </td>
             <td>

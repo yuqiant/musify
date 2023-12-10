@@ -92,7 +92,7 @@ function Account() {
           <select id="role" className="account-input" name="role" value={account.role} onChange={handleChange}>
             <option value="USER">User</option>
             <option value="ADMIN">Admin</option>
-            <option value="REVIEWER">Reviewer</option>
+            <option value="DJ">DJ</option>
           </select>
         </div>
 

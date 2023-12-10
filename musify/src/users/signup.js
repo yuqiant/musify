@@ -72,7 +72,7 @@ function Signup() {
       />
       <select name="role" value={user.role} onChange={handleChange}>
         <option value="USER">User</option>
-        <option value="REVIEWER">Reviewer</option>
+        <option value="DJ">DJ</option>
         <option value="ADMIN">Admin</option>
       </select>
       <button onClick={signup}>Signup</button>

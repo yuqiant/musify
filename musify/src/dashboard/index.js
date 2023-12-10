@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../AuthContext';
 import * as userClient from '../users/client'; // Adjust path as needed
 import * as songClient from './client'; // Adjust path as needed
-import AdminDashboard from './admindashboard';
+import DJDashboard from './djdashboard';
 
 const Dashboard = () => {
     const { userId } = useContext(AuthContext);
@@ -68,27 +68,18 @@ const Dashboard = () => {
                 </div>
             )}
 
-            {userData.role === 'ADMIN' && (
+            {userData.role === 'DJ' && (
                 <div>
                     <h2>Song Management</h2>
-                <AdminDashboard 
+                <DJDashboard
                     onAddSong={handleAddSong} 
                     onEditSong={handleEditSong} 
                     onDeleteSong={handleDeleteSong} 
                 />
                 </div> 
             )}
-
-            {userData.role === 'REVIEWER' && (
-                <div>
-                    <h2>Your Reviews</h2>
-                    {/* Display reviews here */}
-                </div>
-            )}
-
-            {/* Additional role-specific components */}
         </div>
     );
 };
 
-export default Dashboard;
+export default DJDashboard;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as client from './client'; // Make sure the path to your client.js is correct
 
-const AdminDashboard = ({ onAddSong }) => {
+const DJDashboard = ({ onAddSong }) => {
     const [song, setSong] = useState({ songName: '', artistName: '', albumName: '', releasedYear: '', genre: '' });
     const [songs, setSongs] = useState([]); // State for storing all songs
     const [isEditing, setIsEditing] = useState(false);
@@ -24,23 +24,10 @@ const AdminDashboard = ({ onAddSong }) => {
         setSong({ ...song, [e.target.name]: e.target.value });
     };
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     await onAddSong(song);
-    //     setSong({ songName: '', artistName: '', albumName: '', releasedYear: '', genre: '' });
-    //     fetchSongs(); // Fetch songs again to update the list
-    // };
-
-    // const handleEdit = async (songId, updatedSong) => {
-    //     // Logic to update a song
-    //     await client.updateSong(songId, updatedSong);
-    //     fetchSongs();
-    // };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (isEditing) {
-            await client.updateSong(editingSongId, song); // Update the song
+            await client.updateSong(editingSongId, song);
         } else {
             await onAddSong(song); // Add a new song
         }
@@ -51,15 +38,13 @@ const AdminDashboard = ({ onAddSong }) => {
     };
 
     const handleEdit = (songItem) => {
-        setSong({ ...songItem }); // Fill the form with the song data for editing
+        setSong({ ...songItem }); 
         setIsEditing(true);
         setEditingSongId(songItem._id);
     };
 
     
-
     const handleDelete = async (songId) => {
-        // Logic to delete a song
         await client.deleteSong(songId);
         fetchSongs();
     };
@@ -131,4 +116,4 @@ const AdminDashboard = ({ onAddSong }) => {
     );
 }
     
-export default AdminDashboard;
+export default DJDashboard;
