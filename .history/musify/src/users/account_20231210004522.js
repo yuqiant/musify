@@ -92,7 +92,7 @@ function Account() {
           <select id="role" className="account-input" name="role" value={account.role} onChange={handleChange}>
             <option value="USER">User</option>
             <option value="ADMIN">Admin</option>
-            <option value="DJ">DJ</option>
+            <option value="REVIEWER">Reviewer</option>
           </select>
         </div>
 
@@ -102,8 +102,7 @@ function Account() {
         </div>
 
         {account.role === "ADMIN" && (
-          // yq: changed from profile to dashboard
-          <Link to="/admin/dashboard" className="btn btn-warning w-100">User Management</Link>
+          <Link to="/admin/profile" className="btn btn-warning w-100">User Management</Link>
         )}
       </div>
     </div>

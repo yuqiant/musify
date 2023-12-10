@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext} from "react";
 import { Link } from 'react-router-dom';
 import { BsFillCheckCircleFill, BsPencil, BsTrash3Fill, BsPlusCircleFill } from "react-icons/bs";
 import { AuthContext } from "../AuthContext";
@@ -11,10 +11,10 @@ function UserTable() {
 
   const createUser = async () => {
     try {
-      console.log('Creating user:', user);
+      console.log('Creating user:', user); 
       const newUser = await client.createUser(user);
       setUsers([newUser, ...users]);
-
+      
       setUser({ username: "", password: "", role: "USER", firstName: "", lastName: "" });
     } catch (err) {
       console.error('Error creating user:', err);
@@ -32,7 +32,7 @@ function UserTable() {
 
   const selectUser = async (selectedUser) => {
     try {
-
+      
       if (selectedUser && selectedUser._id) {
         const u = await client.findUserById(selectedUser._id);
         setUser({ ...u });
@@ -43,7 +43,7 @@ function UserTable() {
       console.log(err);
     }
   };
-
+  
   const updateUser = async () => {
     try {
       const status = await client.updateUser(user);
@@ -81,38 +81,38 @@ function UserTable() {
           </tr>
           <tr>
             <td>
-              <input
+              <input 
                 placeholder="Username"
-                value={user.username}
+                value={user.username} 
                 onChange={(e) => setUser({ ...user, username: e.target.value })}
               />
             </td>
             <td>
-              <input
+              <input 
                 placeholder="FirstName"
-                value={user.firstName}
+                value={user.firstName} 
                 onChange={(e) => setUser({ ...user, firstName: e.target.value })}
               />
             </td>
             <td>
-              <input
+              <input 
                 placeholder="LastName"
-                value={user.lastName}
+                value={user.lastName} 
                 onChange={(e) => setUser({ ...user, lastName: e.target.value })}
               />
             </td>
             <td>
-              <select
-                value={user.role}
+              <select 
+                value={user.role} 
                 onChange={(e) => setUser({ ...user, role: e.target.value })}
               >
                 <option value="USER">User</option>
                 <option value="ADMIN">Admin</option>
-                <option value="DJ">DJ</option>
+                <option value="REVIEWER">Reviewer</option>
               </select>
             </td>
             <td>
-              <BsFillCheckCircleFill
+              <BsFillCheckCircleFill 
                 onClick={updateUser}
                 className="me-2 text-success fs-1"
               />
@@ -122,11 +122,11 @@ function UserTable() {
         <tbody>
           {users.map((user) => (
             <tr key={user._id}>
-              <td>
-                <Link to={`/profile/${user._id}`}>
-                  {user.username}
+            <td>        
+                <Link to={`/account/${user._id}`}>
+                    {user.username}
                 </Link>
-              </td>
+            </td>
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
               <td>
@@ -134,7 +134,7 @@ function UserTable() {
                   <BsPencil onClick={() => selectUser(user)} />
                 </button>
                 <button className="btn btn-warning me-2">
-                  <BsTrash3Fill onClick={() => deleteUser(user)} />
+                  <BsTrash3Fill onClick={() => deleteUser(user)}/>
                 </button>
               </td>
             </tr>

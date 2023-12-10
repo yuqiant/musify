@@ -2,15 +2,11 @@ import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../AuthContext';
 import * as userClient from '../users/client'; // Adjust path as needed
 import * as songClient from './client'; // Adjust path as needed
-import * as playlistClient from '../playlists/client';
-import PlaylistComponent from '../playlists/component';
 import AdminDashboard from './admindashboard';
 
 const Dashboard = () => {
     const { userId } = useContext(AuthContext);
     const [userData, setUserData] = useState(null);
-    const [playlists, setPlaylists] = useState([]);
-
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -18,8 +14,6 @@ const Dashboard = () => {
                 try {
                     const response = await userClient.findUserById(userId);
                     setUserData(response);
-                    const playlistsResponse = await playlistClient.getUserPlaylists(userId);
-                    setPlaylists(playlistsResponse);
                 } catch (error) {
                     console.error('Error fetching user data:', error);
                 }
@@ -71,16 +65,11 @@ const Dashboard = () => {
             {userData.role === 'USER' && (
                 <div>
                     <h2>Your Playlists</h2>
-                    <div>
-                        {playlists.map(playlist => (
-                            // <PlaylistComponent key={playlist.id} playlist={playlist} />
-                            <PlaylistComponent key={playlist._id} playlist={playlist} />
-                        ))}
-                    </div>
+                    {/* Display playlists here */}
                 </div>
             )}
 
-            {userData.role === 'DJ' && (
+            {userData.role === 'ADMIN' && (
                 <div>
                     <h2>Song Management</h2>
                     <AdminDashboard
@@ -90,6 +79,15 @@ const Dashboard = () => {
                     />
                 </div>
             )}
+
+            {userData.role === 'REVIEWER' && (
+                <div>
+                    <h2>Your Reviews</h2>
+                    {/* Display reviews here */}
+                </div>
+            )}
+
+            {/* Additional role-specific components */}
         </div>
     );
 };

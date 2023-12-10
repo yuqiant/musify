@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as client from './client'; // Make sure the path to your client.js is correct
 
-const DJDashboard = ({ onAddSong }) => {
+const AdminDashboard = ({ onAddSong }) => {
     const [song, setSong] = useState({ songName: '', artistName: '', albumName: '', releasedYear: '', genre: '' });
     const [songs, setSongs] = useState([]); // State for storing all songs
     const [isEditing, setIsEditing] = useState(false);
@@ -116,4 +116,4 @@ const DJDashboard = ({ onAddSong }) => {
     );
 }
     
-export default DJDashboard;
+export default AdminDashboard;

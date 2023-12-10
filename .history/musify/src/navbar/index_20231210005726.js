@@ -33,19 +33,21 @@ const Navbar = () => {
                     <NavLink to={`/dashboard`} activeClassName="active" onClick={handleDashboardClick}>
                         Dashboard
                     </NavLink>
-                    {/* <NavLink
-                        to="/dashboard"
-                        className={({ isActive }) => isActive ? 'active' : ''}
-                        isActive={(match, location) => {
-                            // 检查路径是否为 '/dashboard' 或者以 '/admin/dashboard' 开头
-                            return location.pathname === '/dashboard' || location.pathname.startsWith('/admin/dashboard');
-                        }}
-                    >
-                        Dashboard
-                    </NavLink> */}
-
                 </li>
-
+                <NavLink
+                    to={`/dashboard`}
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                    onClick={handleDashboardClick}
+                    isActive={(match, location) => {
+                        if (!match) {
+                            return false;
+                        }
+                        // Return true for both '/dashboard' and '/admin/dashboard' paths
+                        return location.pathname === '/dashboard' || location.pathname === '/admin/dashboard';
+                    }}
+                >
+                    Dashboard
+                </NavLink>
 
                 <li className="list-group-item">
                     {isAuthenticated ? (

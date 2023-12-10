@@ -73,14 +73,13 @@ const Dashboard = () => {
                     <h2>Your Playlists</h2>
                     <div>
                         {playlists.map(playlist => (
-                            // <PlaylistComponent key={playlist.id} playlist={playlist} />
-                            <PlaylistComponent key={playlist._id} playlist={playlist} />
+                            <PlaylistComponent key={playlist.id} playlist={playlist} />
                         ))}
                     </div>
                 </div>
             )}
 
-            {userData.role === 'DJ' && (
+            {userData.role === 'ADMIN' && (
                 <div>
                     <h2>Song Management</h2>
                     <AdminDashboard
@@ -90,6 +89,15 @@ const Dashboard = () => {
                     />
                 </div>
             )}
+
+            {userData.role === 'REVIEWER' && (
+                <div>
+                    <h2>Your Reviews</h2>
+                    {/* Display reviews here */}
+                </div>
+            )}
+
+            {/* Additional role-specific components */}
         </div>
     );
 };

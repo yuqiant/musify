@@ -82,16 +82,12 @@ import "./index.css";
 
 function SongDetails() {
     const { id } = useParams();
-    const navigate = useNavigate();
     const { isAuthenticated, userId } = useContext(AuthContext);
     // const { user, isAuthenticated } = useContext(UserContext);
     const [song, setSong] = useState(null);
     const [playlists, setPlaylists] = useState([]);
     const [selectedPlaylist, setSelectedPlaylist] = useState('');
     const REMOTE_API_URL = "http://localhost:4000";
-    const goToDashboard = () => {
-        navigate('/dashboard'); // 使用你的dashboard路由路径替换'/dashboard'
-    };
 
 
     useEffect(() => {
