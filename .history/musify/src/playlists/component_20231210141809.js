@@ -40,6 +40,7 @@ const PlaylistComponent = ({ playlist }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const toggleSongsList = () => {
         console.log(playlist.songs);
+        console.log(playlist.songs.songName);
 
         setIsExpanded(!isExpanded); // 切换展开/收起状态
     };
@@ -47,7 +48,7 @@ const PlaylistComponent = ({ playlist }) => {
     return (
         <div style={{ marginBottom: '10px' }}>
             <div onClick={toggleSongsList} style={{ cursor: 'pointer' }}>
-
+                {/* 显示播放列表名称 */}
                 <h3>{playlist.name}</h3>
                 {/* 显示播放列表封面，如果没有封面则显示默认图片 */}
                 {/* //                 <img src={playlist.coverImage || 'path/to/default/heart/image.png'} alt={playlist.name} /> */}
@@ -61,8 +62,8 @@ const PlaylistComponent = ({ playlist }) => {
             </div> */}
             {isExpanded && (
                 <div>
-                    {/* {console.log('Songs in Playlist:', playlist.songs)}
-                    {console.log('name:', playlist.songs.songName)} */}
+                    {console.log('Songs in Playlist:', playlist.songs)}
+                    {console.log('name:', playlist.songs.songName)}
 
                     {playlist.songs.map(song => (
 

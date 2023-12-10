@@ -36,6 +36,6 @@ const getPlaylistDetails = async (playlistId) => {
 
 export {
     getUserPlaylists,
-    getPlaylistDetails,
+    getPlaylistDetails，
 
 };

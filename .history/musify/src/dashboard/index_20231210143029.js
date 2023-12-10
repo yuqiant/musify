@@ -19,16 +19,7 @@ const Dashboard = () => {
                     const response = await userClient.findUserById(userId);
                     setUserData(response);
                     const playlistsResponse = await playlistClient.getUserPlaylists(userId);
-                    // setPlaylists(playlistsResponse);
-
-                    const playlistsDetailPromises = playlistsResponse.map(async (playlist) => {
-                        // 假设您有一个函数来获取单个播放列表的详细信息
-                        return await playlistClient.getPlaylistDetails(playlist._id);
-                    });
-
-                    const playlistsDetails = await Promise.all(playlistsDetailPromises);
-                    console.log(playlistsDetails);
-                    setPlaylists(playlistsDetails);
+                    setPlaylists(playlistsResponse);
                 } catch (error) {
                     console.error('Error fetching user data:', error);
                 }
@@ -80,12 +71,12 @@ const Dashboard = () => {
             {userData.role === 'USER' && (
                 <div>
                     <h2>Your Playlists</h2>
-                    <div>
+                    {/* <div>
                         {playlists.map(playlist => (
                             // <PlaylistComponent key={playlist.id} playlist={playlist} />
                             <PlaylistComponent key={playlist._id} playlist={playlist} />
                         ))}
-                    </div>
+                    </div> */}
                 </div>
             )}
 

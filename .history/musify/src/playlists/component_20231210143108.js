@@ -40,6 +40,7 @@ const PlaylistComponent = ({ playlist }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const toggleSongsList = () => {
         console.log(playlist.songs);
+        console.log(playlist.songs.songName);
 
         setIsExpanded(!isExpanded); // 切换展开/收起状态
     };

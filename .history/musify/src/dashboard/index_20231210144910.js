@@ -27,7 +27,6 @@ const Dashboard = () => {
                     });
 
                     const playlistsDetails = await Promise.all(playlistsDetailPromises);
-                    console.log(playlistsDetails);
                     setPlaylists(playlistsDetails);
                 } catch (error) {
                     console.error('Error fetching user data:', error);
