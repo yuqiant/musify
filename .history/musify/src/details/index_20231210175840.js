@@ -82,34 +82,56 @@ function SongDetails() {
     };
 
     if (!song) return <div>Loading song details...</div>;
-    console.log(song.Genre);
+
     return (
         <div className="song-details-container">
-            <h1><b>{song.songName}</b> by <b>{song.artistName}</b></h1>
             <br />
-            <div className="detail-row">
-                <label>Song Name:</label>
-                <div className="detail">{song.songName}</div>
+
+            <div class="row">
+                <div class="col-md-6 text-end">
+                    <h2>Song Name:</h2>
+                </div>
+                <div class="col-md-6">
+                    <h2>{song.songName}</h2>
+                </div>
             </div>
-            <div className="detail-row">
-                <label>Album Name:</label>
-                <div className="detail">{song.albumName}</div>
+            <div class="row">
+                <div class="col-md-6 text-end">
+                    <h2>Album Name:</h2>
+                </div>
+                <div class="col-md-6">
+                    <h2>{song.albumName}</h2>
+                </div>
             </div>
-            <div className="detail-row">
-                <label>Artist Name:</label>
-                <div className="detail">{song.artistName}</div>
+            <div class="row">
+                <div class="col-md-6 text-end">
+                    <h2>Artist Name:</h2>
+                </div>
+                <div class="col-md-6">
+                    <h2>{song.artistName}</h2>
+                </div>
             </div>
-            <div className="detail-row">
-                <label>Genre:</label>
-                <div className="detail">{song.Genre}</div>
+            <div class="row">
+                <div class="col-md-6 text-end">
+                    <h2>Genre:</h2>
+                </div>
+                <div class="col-md-6">
+                    <h2>{song.genre}</h2>
+                </div>
             </div>
-            <div className="detail-row">
-                <label>Released Year:</label>
-                <div className="detail">{song.releasedYear}</div>
+            <div class="row">
+                <div class="col-md-6 text-end">
+                    <h2>Released Year:</h2>
+                </div>
+                <div class="col-md-6">
+                    <h2>{song.releasedYear}</h2>
+                </div>
             </div>
+
 
             {isAuthenticated && (
                 <div className="select-playlist-container">
+
                     <select
                         value={selectedPlaylist}
                         onChange={(e) => setSelectedPlaylist(e.target.value)}
@@ -121,7 +143,7 @@ function SongDetails() {
                             </option>
                         ))}
                     </select>
-                    <button className='btn btn-primary' onClick={handleAddSong}>Add to My List</button>
+                    <button className='btn btn-success' onClick={handleAddSong}>Add to My List</button>
                 </div>
             )}
         </div>

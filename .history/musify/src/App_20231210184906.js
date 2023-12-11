@@ -12,6 +12,7 @@ import Account from './users/account';
 import Users from "./users";
 import Dashboard from './dashboard';
 import EditPlaylistPage from './playlists/edit';
+import CreatePlaylistPage from './playlists/create';
 
 // ProtectedRoute component to handle the redirection based on authentication
 const ProtectedRoute = ({ children }) => {
@@ -38,6 +39,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/search" element={<Results />} />
         <Route path="/details/:id" element={<SongDetails />} />
+        <Route path="/create-playlist" element={<CreatePlaylistPage />} />
         <Route path="/profile" element={
           <ProtectedRoute>
             <Account />

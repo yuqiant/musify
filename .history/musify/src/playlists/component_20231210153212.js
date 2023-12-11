@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-const PlaylistComponent = ({ playlist, onDeleteSong, onEditPlaylist }) => {
+const PlaylistComponent = ({ playlist, onDeleteSong }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const handleDeleteClick = (songId) => {
         if (window.confirm('Are you sure you want to delete this song from the playlist?')) {
@@ -19,7 +19,6 @@ const PlaylistComponent = ({ playlist, onDeleteSong, onEditPlaylist }) => {
         <div style={{ marginBottom: '10px' }}>
             <div onClick={toggleSongsList} style={{ cursor: 'pointer' }}>
                 <h3>{playlist.name}</h3>
-                <button onClick={() => onEditPlaylist(playlist._id)}>Edit</button>
             </div>
 
             {isExpanded && (

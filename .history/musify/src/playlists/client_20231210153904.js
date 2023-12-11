@@ -3,6 +3,9 @@ import axios from 'axios';
 
 const BASE_API_URL = 'http://localhost:4000'; // Adjust accordingly
 
+
+
+
 const getUserPlaylists = async (userId) => {
     try {
         const response = await fetch(`${BASE_API_URL}/users/${userId}/playlists`);
@@ -35,7 +38,7 @@ const deleteSongFromPlaylist = async (playlistId, songId) => {
         if (response.status !== 200) {
             throw new Error(`API call failed with status: ${response.status}`);
         }
-        return response.data;
+        return response.data; // 或者返回 true 来表示成功
     } catch (error) {
         console.error('Error deleting song from playlist:', error);
         throw error;

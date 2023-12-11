@@ -55,7 +55,7 @@ function App() {
         } />
         <Route path="/*" element={<Users />} />
         <Route path="/profile/:userId" element={<AccountPage />} />
-        <Route path="/edit-playlist/:playlistId" element={<EditPlaylistPage />} />
+        <Route path="/profile/:userId" element={<AccountPage />} />
 
       </Routes>
       {/* </Router> */}

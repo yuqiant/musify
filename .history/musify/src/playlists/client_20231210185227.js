@@ -43,10 +43,25 @@ const deleteSongFromPlaylist = async (playlistId, songId) => {
 };
 
 
+const createPlaylist = async (playlistData) => {
+    try {
+        const response = await axios.post(`${BASE_API_URL}/playlists`, playlistData);
+        if (response.status !== 201) {
+            throw new Error(`API call failed with status: ${response.status}`);
+        }
+        return response.data;
+    } catch (error) {
+        console.error('Error creating playlist:', error);
+        throw error; // Re-throw the error for the caller to handle
+    }
+};
+
+
 
 export {
     getUserPlaylists,
     getPlaylistDetails,
     deleteSongFromPlaylist,
+    createPlaylist,
 
 };

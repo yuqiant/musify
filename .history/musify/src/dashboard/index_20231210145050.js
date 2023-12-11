@@ -1,18 +1,15 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext';
 import * as userClient from '../users/client'; // Adjust path as needed
 import * as songClient from './client'; // Adjust path as needed
 import * as playlistClient from '../playlists/client';
 import PlaylistComponent from '../playlists/component';
 import AdminDashboard from './admindashboard';
-import "./admindashboard.css";
 
 const Dashboard = () => {
     const { userId } = useContext(AuthContext);
     const [userData, setUserData] = useState(null);
     const [playlists, setPlaylists] = useState([]);
-    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -76,59 +73,41 @@ const Dashboard = () => {
         }
     };
 
-    const handleDeleteSongFromPlaylist = async (playlistId, songId) => {
-        if (window.confirm('Are you sure you want to remove this song from the playlist?')) {
-            try {
-                // 发送请求到后端 API 删除歌曲
-                await playlistClient.deleteSongFromPlaylist(playlistId, songId);
-
-                // 重新获取播放列表数据来更新 UI
-                const updatedPlaylists = await playlistClient.getUserPlaylists(userId);
-                setPlaylists(updatedPlaylists);
-            } catch (error) {
-                console.error('Error deleting song from playlist:', error);
-                alert('Failed to delete song from playlist');
-            }
-        }
-    };
-
-
-    const handleEditPlaylist = (playlistId) => {
-        navigate(`/edit-playlist/${playlistId}`);
-    };
-
-
-
     return (
         <div>
-            <h1>Hello, <b>{userData.firstName}!</b></h1>
+            <p>Hello, {userData.firstName}!</p>
 
             {userData.role === 'USER' && (
                 <div>
                     <h2>Your Playlists</h2>
                     <div>
                         {playlists.map(playlist => (
-                            <PlaylistComponent key={playlist._id}
-                                playlist={playlist}
-                                onDeleteSong={handleDeleteSongFromPlaylist}
-                                onEditPlaylist={handleEditPlaylist}
-                            />
+                            // <PlaylistComponent key={playlist.id} playlist={playlist} />
+                            <PlaylistComponent key={playlist._id} playlist={playlist} />
                         ))}
                     </div>
                 </div>
             )}
 
-            {userData.role === 'DJ' && (
-                <div className="admin-dashboard">
-                    <h3>Song Management</h3>
+            {userData.role === 'ADMIN' && (
+                <div>
+                    <h2>Song Management</h2>
                     <AdminDashboard
                         onAddSong={handleAddSong}
                         onEditSong={handleEditSong}
                         onDeleteSong={handleDeleteSong}
-
                     />
                 </div>
             )}
+
+            {userData.role === 'REVIEWER' && (
+                <div>
+                    <h2>Your Reviews</h2>
+                    {/* Display reviews here */}
+                </div>
+            )}
+
+            {/* Additional role-specific components */}
         </div>
     );
 };

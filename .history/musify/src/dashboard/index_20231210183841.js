@@ -6,7 +6,6 @@ import * as songClient from './client'; // Adjust path as needed
 import * as playlistClient from '../playlists/client';
 import PlaylistComponent from '../playlists/component';
 import AdminDashboard from './admindashboard';
-import "./admindashboard.css";
 
 const Dashboard = () => {
     const { userId } = useContext(AuthContext);
@@ -97,11 +96,15 @@ const Dashboard = () => {
         navigate(`/edit-playlist/${playlistId}`);
     };
 
+    const handleCreatePlaylist = () => {
+        navigate('/create-playlist');
+    };
+
 
 
     return (
         <div>
-            <h1>Hello, <b>{userData.firstName}!</b></h1>
+            <p>Hello, {userData.firstName}!</p>
 
             {userData.role === 'USER' && (
                 <div>
@@ -118,9 +121,9 @@ const Dashboard = () => {
                 </div>
             )}
 
-            {userData.role === 'DJ' && (
-                <div className="admin-dashboard">
-                    <h3>Song Management</h3>
+            {userData.role === 'ADMIN' && (
+                <div>
+                    <h2>Song Management</h2>
                     <AdminDashboard
                         onAddSong={handleAddSong}
                         onEditSong={handleEditSong}
@@ -129,6 +132,15 @@ const Dashboard = () => {
                     />
                 </div>
             )}
+
+            {userData.role === 'REVIEWER' && (
+                <div>
+                    <h2>Your Reviews</h2>
+                    {/* Display reviews here */}
+                </div>
+            )}
+
+            {/* Additional role-specific components */}
         </div>
     );
 };

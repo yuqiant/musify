@@ -19,7 +19,6 @@ const PlaylistComponent = ({ playlist, onDeleteSong, onEditPlaylist }) => {
         <div style={{ marginBottom: '10px' }}>
             <div onClick={toggleSongsList} style={{ cursor: 'pointer' }}>
                 <h3>{playlist.name}</h3>
-                <button onClick={() => onEditPlaylist(playlist._id)}>Edit</button>
             </div>
 
             {isExpanded && (
