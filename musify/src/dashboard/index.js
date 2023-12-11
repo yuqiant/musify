@@ -5,6 +5,7 @@ import * as songClient from './client'; // Adjust path as needed
 import * as playlistClient from '../playlists/client';
 import PlaylistComponent from '../playlists/component';
 import AdminDashboard from './admindashboard';
+import "./admindashboard.css";
 
 const Dashboard = () => {
     const { userId } = useContext(AuthContext);
@@ -66,7 +67,7 @@ const Dashboard = () => {
 
     return (
         <div>
-            <p>Hello, {userData.firstName}!</p>
+            <h1>Hello, <b>{userData.firstName}!</b></h1>
 
             {userData.role === 'USER' && (
                 <div>
@@ -81,8 +82,8 @@ const Dashboard = () => {
             )}
 
             {userData.role === 'DJ' && (
-                <div>
-                    <h2>Song Management</h2>
+                <div className="admin-dashboard">
+                    <h3>Song Management</h3>
                     <AdminDashboard
                         onAddSong={handleAddSong}
                         onEditSong={handleEditSong}

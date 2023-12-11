@@ -4,6 +4,7 @@ import axios from 'axios';
 import Navbar from '../navbar';
 import { AuthContext } from '../AuthContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
 function Results() {
     const location = useLocation();
@@ -15,8 +16,6 @@ function Results() {
     const handleViewDetails = (songId) => {
         navigate(`/details/${songId}`);
     };
-
-    const goBack = () => navigate('/');  // go back to home
 
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
@@ -50,65 +49,49 @@ function Results() {
     const renderSearchResults = () => {
         console.log("in render", searchResults);
         if (searchResults.length === 0) {
-            return <div>No results found</div>;
+            return (
+                <div style={{ textAlign: 'center', margin: '20px', padding: '20px', border: '1px solid #ddd', borderRadius: '10px', backgroundColor: '#f9f9f9' }}>
+                    <h2>Sorry, No Results Found</h2>
+                    <p style={{ fontSize: '16px', color: '#666' }}>
+                        We couldn't find any matches for your search. Try adjusting your keywords.
+                    </p>
+                    <img src="path-to-no-results-image.jpg" alt="No Results" style={{ maxWidth: '300px', margin: '20px auto' }} />
+                </div>
+            );
         }
-        // return searchResults.map((result, index) => (
-
-
-        //     <div key={index} className="search-result-item">
-        //         <h5>Song : {result.songName}</h5>
-        //         <h5>Album: {result.albumName}</h5>
-        //         <h5>Artist: {result.artistName}</h5>
-        //         <h5>Released Year: {result.releasedYear}</h5>
-        //         <h5>Genre: {result.genre}</h5>
-
-
-        //         <a href={`/details/${result.id}`}>View Details</a>
-        //     </div>
-
-
-        // ));
         return (
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Song</th>
-                        <th>Album</th>
-                        <th>Artist</th>
-                        {/* <th>Released Year</th>
-                        <th>Genre</th>
-                        <th>Details</th> */}
-                    </tr>
-                </thead>
-                <tbody>
-                    {searchResults.map((result, index) => (
-                        <tr key={index}>
-                            <td>{result.songName}</td>
-                            <td>{result.albumName}</td>
-                            <td>{result.artistName}</td>
-                            {/* <td>{result.releasedYear}</td>
-                            <td>{result.genre}</td> */}
-                            {/* <td><a href={`/details/${result._id}`}>View Details</a></td> */}
-                            {/* console.log("result id: ",{result._id}) */}
-                            <button onClick={() => handleViewDetails(result._id)} className="btn">
-                                View Details
-                            </button>
-
+            <div>
+                <h1>Search Results</h1>
+                <table className="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Song</th>
+                            <th>Album</th>
+                            <th>Artist</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {searchResults.map((result, index) => (
+                            <tr key={index}>
+                                <td>{result.songName}</td>
+                                <td>{result.albumName}</td>
+                                <td>{result.artistName}</td>
+                                <td>
+                                    {/* Button is now inside the map function and part of each row */}
+                                    <button onClick={() => handleViewDetails(result._id)} className="btn btn-primary btn-view-details">
+                                        View Details
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         );
     };
-
-
     return (
         <div>
-            <button onClick={goBack} className="btn"> Back</button>
-
             <div>
-                <br></br>
-                <h3>Search Results</h3>
                 <br></br>
             </div>
             <div>

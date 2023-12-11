@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as client from './client'; // Make sure the path to your client.js is correct
 
 const AdminDashboard = ({ onAddSong }) => {
-    const [song, setSong] = useState({ songName: '', artistName: '', albumName: '', releasedYear: '', genre: '' });
+    const [song, setSong] = useState({ songName: '', artistName: '', albumName: '', releasedYear: '', Genre: '' });
     const [songs, setSongs] = useState([]); // State for storing all songs
     const [isEditing, setIsEditing] = useState(false);
     const [editingSongId, setEditingSongId] = useState(null);
@@ -31,7 +31,7 @@ const AdminDashboard = ({ onAddSong }) => {
         } else {
             await onAddSong(song); // Add a new song
         }
-        setSong({ songName: '', artistName: '', albumName: '', releasedYear: '', genre: '' });
+        setSong({ songName: '', artistName: '', albumName: '', releasedYear: '', Genre: '' });
         setIsEditing(false);
         setEditingSongId(null);
         fetchSongs();
@@ -50,7 +50,7 @@ const AdminDashboard = ({ onAddSong }) => {
     };
 
     return (
-        <div>
+        <div className="admin-dashboard">
             <form onSubmit={handleSubmit}>
                 <input
                     name="songName"
@@ -77,12 +77,12 @@ const AdminDashboard = ({ onAddSong }) => {
                     placeholder="Released Year"
                 />
                 <input
-                    name="genre"
-                    value={song.genre}
+                    name="Genre"
+                    value={song.Genre}
                     onChange={handleChange}
                     placeholder="Genre"
                 />
-                <button type="submit">{isEditing ? 'Save Changes' : 'Add Song'}</button>
+                <button type="submit" className="btn btn-primary">{isEditing ? 'Save Changes' : 'Add Song'}</button>
             </form>
     
             <table>
@@ -103,7 +103,7 @@ const AdminDashboard = ({ onAddSong }) => {
                             <td>{songItem.artistName}</td>
                             <td>{songItem.albumName}</td>
                             <td>{songItem.releasedYear}</td>
-                            <td>{songItem.genre}</td>
+                            <td>{songItem.Genre}</td>
                             <td>
                                 <button onClick={() => handleEdit(songItem)}>Edit</button>
                                 <button onClick={() => handleDelete(songItem._id)}>Delete</button>

@@ -61,9 +61,14 @@ function Account() {
     const { name, value } = e.target;
     setAccount({ ...account, [name]: value });
   };
+  const goBack = () => navigate('/'); // go back to home
 
   return (
+
     <div className="account-section">
+      {/* <div>
+        <button onClick={goBack} className="btn"> Back</button>
+      </div> */}
       <h1 className="account-heading">Profile</h1>
       {error && <div className="error-message">{error}</div>}
       <div className="account-form">
@@ -97,17 +102,19 @@ function Account() {
         </div>
 
         <div className="account-actions">
-          <button className="account-btn save-btn" onClick={save}>Save</button>
-          <button className="account-btn signout-btn" onClick={signout}>Signout</button>
+          <button className="btn btn-primary save-btn" onClick={save}>Save</button>
+          <button className="btn btn-primary signout-btn" onClick={signout}>Signout</button>
         </div>
 
+        <div className="special-button">
         {account.role === "ADMIN" && (
-          // yq: changed from profile to dashboard
-          <Link to="/admin/dashboard" className="btn btn-warning w-100">User Management</Link>
+          <Link to="/admin/dashboard" className="btn btn-secondary">User Management</Link>
         )}
+        </div>
+        <div class="button-container">
+      </div>
       </div>
     </div>
   );
-}
-
+        }
 export default Account;

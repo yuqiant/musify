@@ -1,8 +1,6 @@
 .account-heading {
     font-size: 60px;
-    text-align: center;
     margin-bottom: 40px;
-    margin-right: 500px;
 }
 
 .Account-container {
@@ -11,17 +9,17 @@
     justify-content: center; 
     align-items: center;
     min-height: 70vh;
+    width: 100%;
 }
 
-/* Apply a consistent margin and width to all account input elements */
 .account-input {
-    margin-bottom: 15px; /* Adjust as needed for spacing */
+    margin-bottom: 15px;
     padding: 10px;
-    width: 100%; /* Set to 100% to fill the container */
-    max-width: 400px; /* Maximum width can be set as needed */
+    width: 70%; 
+    max-width: 400px; 
     border-radius: 5px;
     border: 1px solid #ddd;
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    box-sizing: border-box;
 }
 
 /* Button styles */
@@ -39,6 +37,7 @@
 label {
     display: block;
     margin-bottom: 5px;
+    width: 100%;
 }
 
 /* Container for the account section to align the form properly */
@@ -47,19 +46,45 @@ label {
     flex-direction: column;
     align-items: flex-start; /* Align items to the start of the flex container */
     width: 100%; /* Full width */
-    max-width: 400px; /* Maximum width as per the inputs */
-    margin: auto; /* Center the section in the page */
+    max-width: 1000px; /* Maximum width as per the inputs */
+    margin-left: 390px;
 }
 
 .save-btn {
-    /* Additional styles specific to the save button */
-}
-
-.signout-btn {
-    /* Additional styles specific to the signout button */
+    margin-left: 450px;
 }
 
 .error-message {
     color: red;
     margin-bottom: 10px;
+}
+
+.account-row {
+    display: flex; /* Align label and input side by side */
+    justify-content: space-between; /* Space between label and input */
+    align-items: center; /* Vertically center align items */
+    margin-bottom: 15px; /* Space between rows */
+    width: 100%;
+}
+
+label {
+    width: 20%; /* Adjust as needed */
+    margin-right: 10px; /* Space between label and input */
+}
+
+.account-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+    margin-right: 10px;
+    width: 10cm;
+    box-sizing: border-box;
+}
+
+.special-button {
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
 }

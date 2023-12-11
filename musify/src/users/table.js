@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { BsFillCheckCircleFill, BsPencil, BsTrash3Fill, BsPlusCircleFill } from "react-icons/bs";
 import { AuthContext } from "../AuthContext";
 import * as client from "./client";
+import './table.css';
 
 function UserTable() {
   const { isAuthenticated, userId } = useContext(AuthContext);
@@ -112,10 +113,9 @@ function UserTable() {
               </select>
             </td>
             <td>
-              <BsFillCheckCircleFill
+              <button
                 onClick={updateUser}
-                className="me-2 text-success fs-1"
-              />
+                className="btn btn-primary">Save</button>
             </td>
           </tr>
         </thead>
@@ -123,19 +123,20 @@ function UserTable() {
           {users.map((user) => (
             <tr key={user._id}>
               <td>
-                <Link to={`/profile/${user._id}`}>
-                  {user.username}
-                </Link>
+              <Link to={`/profile/${user._id}`} className="link-no-underline">
+                {user.username}
+              </Link>
               </td>
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
               <td>
-                <button className="btn btn-warning me-2">
+                <button className="btn btn-warning btn-edit me-2">
                   <BsPencil onClick={() => selectUser(user)} />
                 </button>
-                <button className="btn btn-warning me-2">
-                  <BsTrash3Fill onClick={() => deleteUser(user)} />
+                <button className="btn btn-warning btn-delete me-2" onClick={() => deleteUser(user)}>
+                  <BsTrash3Fill />
                 </button>
+
               </td>
             </tr>
           ))}
