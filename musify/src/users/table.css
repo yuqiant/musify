@@ -1,125 +1,128 @@
 /* UserTable.css */
 
-/* General table styles */
-.table {
+/* General table styles within .testgrid */
+.testgrid .table {
     width: 100%;
-    max-width: 1000px; /* Adjust the max-width to fit your design */
+    max-width: 900px;
     border-collapse: collapse;
-    margin: 30px auto; /* Center table on the page with some margin */
+    margin: auto;
 }
 
-/* Table headers */
-th {
-    background-color: #f2f2f2; /* Light grey background for headers */
-    color: #333; /* Dark text color for contrast */
+/* Table headers inside .testgrid */
+.testgrid th {
+    color: #333;
     font-weight: bold;
-    text-align: left; /* Align text to the left */
-    padding: 12px; /* Add some padding for spacing */
-    grid: none;
-
+    text-align: left;
+    padding: 12px;
+    border-right: none;
+    border-left: none;
 }
 
-/* Table data cells */
-td {
-    text-align: left; /* Align text to the left */
-    padding: 10px; /* Add some padding for spacing */
-    border-bottom: 1px solid #ddd; /* Light border for each row */
-    grid: none;
+/* Table data cells inside .testgrid */
+.testgrid td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    border-right: none;
+    border-left: none;
 }
 
-/* Input fields within the table */
-input {
+/* Input fields within .testgrid */
+.testgrid input {
     padding: 10px;
-    width: 100%; /* Adjust width as needed, with some space for padding */
-    margin: 4px 0; /* Add some margin for spacing */
-    box-sizing: border-box; /* Include padding in the input's total width */
-    border: 1px solid #ddd; /* Light border to match the table */
-    border-radius: 4px; /* Slightly rounded borders for aesthetics */
+    width: 100%;
+    margin: 5px 20px 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
-/* Dropdown select within the table */
-select {
-    padding: 6px;
-    width: 100%; /* Full width of the cell */
-    margin: 4px 0; /* Add some margin for spacing */
-    border: 1px solid #ddd; /* Light border to match the table */
-    border-radius: 4px; /* Slightly rounded borders for aesthetics */
+/* Dropdown select within .testgrid */
+.testgrid select {
+    padding: 10px;
+    width: 100%;
+    margin: 4px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    border-right: none;
+    border-left: none;
 }
 
-/* Button styles */
-.btn {
+/* Button styles within .testgrid */
+.testgrid .btn {
     border: none;
-    padding: 6px 12px; /* Adjust padding as needed */
-    margin-right: 5px; /* Space between buttons */
-    cursor: pointer; /* Indicates the element is clickable */
-    border-radius: 4px; /* Slightly rounded borders for aesthetics */
+    padding: 10px;
+    margin: 4px 0;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
 }
 
-/* Icon styles within buttons */
-.btn .icon {
-    font-size: 20px; /* Adjust icon size as needed */
+/* Icon styles within buttons in .testgrid */
+.testgrid .btn .icon {
+    font-size: 20px;
 }
 
-/* Hover effect for rows */
-tr:hover {
-    background-color: #f5f5f5; /* Light grey background on hover */
+/* Link styles in .testgrid */
+.testgrid .link {
+    color: #007bff;
+    text-decoration: none;
 }
 
-/* Link styles */
-.link {
-    color: #007bff; /* Bootstrap primary color for links */
-    text-decoration: none; /* No underline */
+.testgrid .link:hover {
+    text-decoration: underline;
 }
 
-.link:hover {
-    text-decoration: underline; /* Underline on hover for clarity */
-}
-
-/* Headings */
+/* Headings inside .testgrid */
 h1 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
+    
 }
 
-/* Optional: Responsive design for smaller screens */
+/* Responsive design for smaller screens within .testgrid */
 @media (max-width: 768px) {
-    .table {
+    .testgrid .table {
         width: 95%;
         margin: 10px auto;
     }
 
-    th, td {
-        padding: 8px; /* Smaller padding for smaller screens */
+    .testgrid th, .testgrid td {
+        padding: 8px;
+        border-right: none;
     }
 
-    input, select {
-        width: 90%; /* Adjust for smaller screens */
+    .testgrid input, .testgrid select {
+        width: 90%;
     }
 }
 
-.btn-edit {
+/* Specific button styles within .testgrid */
+.testgrid .btn-edit {
     background-color: rgb(136, 156, 197);
 }
-.btn-edit:hover {
+
+.testgrid .btn-edit:hover {
     background-color: rgb(113, 129, 162);
 }
 
-.btn-delete {
-    background-color: rgb(241, 141, 141); /* Sets the button background to red */
-    border-color: rgb(255, 174, 174); /* Optional: sets the border color to red if you want a border */
-  }
+.testgrid .btn-delete {
+    background-color: rgb(241, 141, 141);
+    border-color: rgb(255, 174, 174);
+}
   
-  /* If you want to change the color on hover as well */
-  .btn-delete:hover {
-    background-color: darkred; /* Darker red on hover for contrast */
-    border-color: darkred; /* Optional: darker border color on hover */
-  }
+.testgrid .btn-delete:hover {
+    background-color: darkred;
+    border-color: darkred;
+}
   
-  .link-no-underline {
-  text-decoration: none; /* Removes the underline */
+.testgrid .link-no-underline {
+    text-decoration: none;
 }
 
-.link-no-underline:hover {
-  text-decoration: none; /* Ensures the underline does not reappear on hover */
+.testgrid .link-no-underline:hover {
+    text-decoration: none;
+    
 }
