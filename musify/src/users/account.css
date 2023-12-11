@@ -1,90 +1,32 @@
-.account-heading {
-    font-size: 60px;
-    margin-bottom: 40px;
-}
-
-.Account-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;
-    min-height: 70vh;
-    width: 100%;
-}
-
-.account-input {
-    margin-bottom: 15px;
-    padding: 10px;
-    width: 70%; 
-    max-width: 400px; 
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    box-sizing: border-box;
-}
-
-/* Button styles */
-.account-btn {
-    padding: 10px 20px; /* Adjust padding as needed */
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    margin-top: 20px; /* Space above buttons */
-    margin-right: 10px; /* Space between buttons */
-    width: auto; /* Auto width to fit content */
-    box-sizing: border-box;
-}
-
-/* Ensure that labels align with inputs */
-label {
-    display: block;
-    margin-bottom: 5px;
-    width: 100%;
-}
-
-/* Container for the account section to align the form properly */
 .account-section {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align items to the start of the flex container */
-    width: 100%; /* Full width */
-    max-width: 1000px; /* Maximum width as per the inputs */
-    margin-left: 390px;
+    align-items: center; /* This ensures horizontal centering of children */
+    justify-content: center; /* This ensures vertical centering */
+    width: 100%; /* Takes the full width */
+    max-width: 800px; /* Adjust this as necessary */
+    margin: auto; /* Centers the section within its parent */
+    min-height: 70vh; /* Adjust this as necessary */
 }
 
+.account-form {
+    width: 100%; /* Takes the full width of its parent */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This ensures horizontal centering of children */
+}
+
+.account-row,
+.account-actions,
+.special-button,
+.button-container {
+    width: 100%; /* Takes the full width of its parent */
+    display: flex;
+    justify-content: center; /* Centers children horizontally */
+    align-items: center; /* Centers children vertically */
+}
+
+/* Remove any specific margin that might be causing the shift */
 .save-btn {
-    margin-left: 450px;
-}
-
-.error-message {
-    color: red;
-    margin-bottom: 10px;
-}
-
-.account-row {
-    display: flex; /* Align label and input side by side */
-    justify-content: space-between; /* Space between label and input */
-    align-items: center; /* Vertically center align items */
-    margin-bottom: 15px; /* Space between rows */
-    width: 100%;
-}
-
-label {
-    width: 20%; /* Adjust as needed */
-    margin-right: 10px; /* Space between label and input */
-}
-
-.account-btn {
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    margin-top: 20px;
-    margin-right: 10px;
-    width: 10cm;
-    box-sizing: border-box;
-}
-
-.special-button {
-    padding: 5px 5px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
+    margin-left:  630px;
 }

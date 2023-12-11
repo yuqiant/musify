@@ -73,6 +73,7 @@ function UserTable() {
   return (
     <div>
       <h1>User List</h1>
+      <div className="testgrid">
       <table className="table">
         <thead>
           <tr>
@@ -142,6 +143,7 @@ function UserTable() {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }
