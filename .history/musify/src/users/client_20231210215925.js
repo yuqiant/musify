@@ -5,7 +5,7 @@ const request = axios.create({
   withCredentials: true,
 });
 
-export const BASE_API = process.env.REACT_APP_BASE_API_URL;
+export const BASE_API = process.env.REACT_APP_API_BASE;
 export const USERS_API = `${BASE_API}/api/users`;
 // export const USERS_API = process.env.REACT_APP_API_URL;
 console.log('BASE API URL:', process.env.REACT_APP_BASE_API_URL);
