@@ -7,6 +7,8 @@ import * as playlistClient from '../playlists/client';
 import PlaylistComponent from '../playlists/component';
 import AdminDashboard from './admindashboard';
 import "./admindashboard.css";
+import UserTable from "../users/table";
+
 
 const Dashboard = () => {
     const { userId } = useContext(AuthContext);
@@ -25,7 +27,6 @@ const Dashboard = () => {
                     // setPlaylists(playlistsResponse);
 
                     const playlistsDetailPromises = playlistsResponse.map(async (playlist) => {
-                        // 假设您有一个函数来获取单个播放列表的详细信息
                         return await playlistClient.getPlaylistDetails(playlist._id);
                     });
 
@@ -125,9 +126,12 @@ const Dashboard = () => {
                         onAddSong={handleAddSong}
                         onEditSong={handleEditSong}
                         onDeleteSong={handleDeleteSong}
-
                     />
                 </div>
+            )}
+
+            {userData.role === 'ADMIN' && (
+                <UserTable />    
             )}
         </div>
     );

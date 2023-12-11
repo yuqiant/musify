@@ -137,7 +137,6 @@ function UserTable() {
                 <button className="btn btn-warning btn-delete me-2" onClick={() => deleteUser(user)}>
                   <BsTrash3Fill />
                 </button>
-
               </td>
             </tr>
           ))}
