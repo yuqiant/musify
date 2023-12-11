@@ -27,9 +27,7 @@ function Results() {
         // 根据 query 和 type 执行搜索
         const performSearch = async () => {
             try {
-                // const response = await axios.get(`${REMOTE_API_URL}?query=${query}&type=${type}`);
-                const encodedQuery = encodeURIComponent(query);
-                const response = await axios.get(`${REMOTE_API_URL}?query=${encodedQuery}&type=${type}`);
+                const response = await axios.get(`${REMOTE_API_URL}?query=${query}&type=${type}`);
                 if (Array.isArray(response.data)) {
                     setSearchResults(response.data);
                     console.log("Response data:", response.data);
